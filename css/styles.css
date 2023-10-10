@@ -1,0 +1,142 @@
+/* ใช้ CSS Grid Layout โดยกำหนดโครงสร้างแบบ grid */
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 column สำหรับเวอร์ชั่น desktop */
+    grid-template-rows: auto auto 1fr auto; /* มีหัวข้อ header, nav bar, content, และ footer */
+    grid-template-areas:
+    "header header header header"
+    "nav-bar nav-bar nav-bar nav-bar "
+    "nav-side content  content content "
+    "footer footer footer footer";
+    height: 100vh; /* ทำให้ความสูงของ body เท่ากับ viewport height */
+}
+
+/* กำหนดสไตล์สำหรับแต่ละส่วน */
+
+.header {
+    grid-area: header;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    height: 200px;
+}
+
+.nav-bar {
+    grid-area: nav-bar;
+    background-color: #444;
+    color: #fff;
+    padding: 20px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu .search {
+    display: flex;
+    align-items: center;
+}
+
+.menu .search input {
+    padding: 5px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.menu .search button {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    margin-left: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.nav-side {
+    grid-area: nav-side;
+    background-color: #555;
+    color: #fff;
+    padding: 20px;
+}
+
+.content {
+    grid-area: content;
+    background-color: #eee;
+    padding: 20px;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+form {
+    width: 60%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+.content input[type="text"],
+input[type="email"],
+textarea {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* กำหนดสไตล์สำหรับ responsive layout */
+
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr ; /* 1 columns สำหรับเวอร์ชั่น จอเล็ก */
+        grid-template-areas:
+            "header "
+            "nav-bar  "
+            "nav-side  "
+            "content"
+            "footer ";
+    }
+
+    .nav-side {
+        order: 1; /* ย้าย .nav-side มาอยู่ด้านบนของ .nav-bar ในเวอร์ชั่น tablet ขึ้นไป */
+    }
+}
+
+
